@@ -1,3 +1,4 @@
 const getSpeakers = require('./getSpeakers');
+const generateToken = require('./generateToken');
 
-module.exports = { getSpeakers };
+module.exports = { getSpeakers, generateToken };
