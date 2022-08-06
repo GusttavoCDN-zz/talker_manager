@@ -11,6 +11,16 @@ const validateToken = require('../middlewares/validateToken');
 
 const router = express.Router();
 
+router.get('/search?', validateToken, async (req, res) => {
+  const { q } = req.query;
+  const speakers = await getSpeakers();
+
+  if (!q || q.length === 0) return res.status(200).json(speakers);
+
+  const filteredSpeakers = speakers.filter(({ name }) => name.includes(q));
+  res.status(200).json(filteredSpeakers);
+});
+
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   const speakers = await getSpeakers();
