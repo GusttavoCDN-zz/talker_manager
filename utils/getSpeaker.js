@@ -6,6 +6,4 @@ async function getSpeaker(id) {
   return speaker;
 }
 
-getSpeaker(1);
-
 module.exports = getSpeaker;

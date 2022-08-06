@@ -1,5 +1,5 @@
 const express = require('express');
-const { getSpeakers, addSpeaker, getSpeaker } = require('../utils');
+const { getSpeakers, addSpeaker, getSpeaker, removeSpeaker } = require('../utils');
 const {
   validateName,
   validateAge,
@@ -27,6 +27,13 @@ router.get('/', async (_req, res) => {
 });
 
 router.use(validateToken);
+
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  await removeSpeaker(id);
+  return res.sendStatus(204);
+});
+
 router.use(validateName);
 router.use(validateAge);
 router.use(validateTalk);
